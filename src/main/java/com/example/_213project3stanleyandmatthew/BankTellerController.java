@@ -1,0 +1,14 @@
+package com.example._213project3stanleyandmatthew;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+
+public class BankTellerController {
+    @FXML
+    private Label welcomeText;
+
+    @FXML
+    protected void onHelloButtonClick() {
+        welcomeText.setText("Welcome to JavaFX Application!");
+    }
+}
