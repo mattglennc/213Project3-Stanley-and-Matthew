@@ -2,32 +2,19 @@ package com.example._213project3stanleyandmatthew;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.Group;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class BankTellerController {
 
-
     @FXML
-    private Label accLabel;
-
-    @FXML
-    private ToggleButton accountDatabaseButton;
-
-    @FXML
-    private GridPane accountSelection;
-
-    @FXML
-    private ToggleGroup accountType;
+    private ToggleGroup accountTypeOC;
 
     @FXML
     private RadioButton camden;
@@ -36,40 +23,31 @@ public class BankTellerController {
     private RadioButton checking;
 
     @FXML
-    private Button close;
-
-    @FXML
-    private ToggleGroup college;
-
-    @FXML
     private RadioButton collegeChecking;
 
     @FXML
-    private ToggleButton depositWithdrawButton;
+    private ToggleGroup collegeOC;
+
+    @FXML
+    private VBox collegeOCbox;
+
+    @FXML
+    private Group collegeOCgroup;
 
     @FXML
     private DatePicker dob;
 
     @FXML
-    private Label dobLabel;
-
-    @FXML
     private TextField fName;
 
     @FXML
-    private Label fnameLabel;
+    private TextField initialDeposit;
 
     @FXML
-    private ToggleGroup group;
-
-    @FXML
-    private CheckBox isLoyal;
+    private CheckBox isLoyalOC;
 
     @FXML
     private TextField lName;
-
-    @FXML
-    private Label lnameLabel;
 
     @FXML
     private RadioButton moneyMarket;
@@ -81,74 +59,80 @@ public class BankTellerController {
     private RadioButton newark;
 
     @FXML
-    private Button open;
-
-    @FXML
-    private ToggleButton openCloseButton;
-
-    @FXML
-    private HBox openCloseButtons;
-
-    @FXML
     private TextArea outText;
 
     @FXML
     private RadioButton savings;
 
-
-    void clearOC(boolean openClose){
-        accountSelection.setVisible(openClose);
-        openCloseButtons.setVisible(openClose);
+    void disableCC(boolean cc){
+        collegeOCgroup.setDisable(cc);
+        camden.setSelected(false);
+        newBrunswick.setSelected(false);
+        newark.setSelected(false);
     }
 
-    void disableSchool(boolean ccAccount){
-        camden.setDisable(ccAccount);
-        newBrunswick.setDisable(ccAccount);
-        newark.setDisable(ccAccount);
-    }
-
-    void disableIsLoyal(boolean sAccount){
-        isLoyal.setDisable(sAccount);
+    void disableLoyalCustomer(boolean s){
+        isLoyalOC.setDisable(s);
+        isLoyalOC.setSelected(false);
     }
 
     @FXML
     void C(ActionEvent event) {
-        disableSchool(true);
-        disableIsLoyal(true);
+        disableCC(true);
+        disableLoyalCustomer(true);
     }
 
     @FXML
     void CC(ActionEvent event) {
-        disableSchool(false);
-        disableIsLoyal(true);
+        disableCC(false);
+        disableLoyalCustomer(true);
+    }
+
+    @FXML
+    void D(ActionEvent event) {
+
     }
 
     @FXML
     void MM(ActionEvent event) {
-        disableSchool(true);
-        disableIsLoyal(true);
+        disableCC(true);
+        disableLoyalCustomer(true);
+    }
+
+    @FXML
+    void O(ActionEvent event) {
+
+    }
+
+    @FXML
+    void P(ActionEvent event) {
+
+    }
+
+    @FXML
+    void PI(ActionEvent event) {
+
+    }
+
+    @FXML
+    void PT(ActionEvent event) {
+
     }
 
     @FXML
     void S(ActionEvent event) {
-        disableSchool(true);
-        disableIsLoyal(false);
-    }
-
-
-    @FXML
-    void accountDB(ActionEvent event) {
-        clearOC(false);
+        disableCC(true);
+        disableLoyalCustomer(false);
     }
 
     @FXML
-    void depositWithdraw(ActionEvent event) {
-        clearOC(false);
+    void U(ActionEvent event) {
+
     }
 
     @FXML
-    void openClose(ActionEvent event) {
-        clearOC(true);
+    void W(ActionEvent event) {
+
     }
 
 }

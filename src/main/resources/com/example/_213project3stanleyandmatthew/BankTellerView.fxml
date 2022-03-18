@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -17,188 +20,248 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example._213project3stanleyandmatthew.BankTellerController">
-   <children>
-      <GridPane>
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <ToggleButton fx:id="openCloseButton" mnemonicParsing="false" onAction="#openClose" prefHeight="143.0" prefWidth="200.0" selected="true" text="Open/Close">
-               <GridPane.margin>
-                  <Insets left="10.0" right="10.0" top="2.0" />
-               </GridPane.margin>
-               <toggleGroup>
-                  <ToggleGroup fx:id="group" />
-               </toggleGroup>
-            </ToggleButton>
-            <ToggleButton fx:id="accountDatabaseButton" mnemonicParsing="false" onAction="#accountDB" prefHeight="143.0" prefWidth="200.0" text="AccountDatabase" toggleGroup="$group" GridPane.columnIndex="2">
-               <GridPane.margin>
-                  <Insets left="10.0" right="10.0" top="2.0" />
-               </GridPane.margin>
-            </ToggleButton>
-            <ToggleButton fx:id="depositWithdrawButton" mnemonicParsing="false" onAction="#depositWithdraw" prefHeight="143.0" prefWidth="200.0" text="Deposit/Withdraw" toggleGroup="$group" GridPane.columnIndex="1">
-               <GridPane.margin>
-                  <Insets left="10.0" right="10.0" top="2.0" />
-               </GridPane.margin>
-            </ToggleButton>
-         </children>
-         <VBox.margin>
-            <Insets top="10.0" />
-         </VBox.margin>
-      </GridPane>
-      <GridPane fx:id="accountSelection" prefHeight="291.0" prefWidth="600.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.0" minWidth="10.0" prefWidth="183.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="497.5" minWidth="10.0" prefWidth="417.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="81.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="139.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="183.0" minHeight="0.0" prefHeight="35.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="190.0" minHeight="0.0" prefHeight="162.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label fx:id="fnameLabel" text="First Name" GridPane.halignment="RIGHT">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <font>
-                  <Font name="SansSerif Regular" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="lnameLabel" text="Last Name" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <font>
-                  <Font name="SansSerif Regular" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="dobLabel" prefHeight="78.0" prefWidth="90.0" text="Date of Birth" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <font>
-                  <Font name="SansSerif Regular" size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="fName" maxWidth="297.0" prefHeight="21.0" prefWidth="297.0" GridPane.columnIndex="1" GridPane.halignment="LEFT">
-               <padding>
-                  <Insets left="10.0" right="10.0" />
-               </padding>
-               <GridPane.margin>
-                  <Insets left="20.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField fx:id="lName" maxWidth="297.0" prefHeight="21.0" prefWidth="297.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
-               <padding>
-                  <Insets right="10.0" />
-               </padding>
-               <GridPane.margin>
-                  <Insets left="20.0" />
-               </GridPane.margin>
-            </TextField>
-            <DatePicker fx:id="dob" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="20.0" />
-               </GridPane.margin>
-            </DatePicker>
-            <Label fx:id="accLabel" prefHeight="78.0" prefWidth="100.0" text="Account Type" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
-               <font>
-                  <Font name="SansSerif Regular" size="16.0" />
-               </font>
-            </Label>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+<TabPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example._213project3stanleyandmatthew.BankTellerController">
+   <tabs>
+      <Tab closable="false" text="Open/Close/Deposit/Withdraw">
+         <content>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="600.0">
                <children>
-                  <GridPane prefHeight="159.0" prefWidth="220.0">
+                  <GridPane prefHeight="306.0" prefWidth="600.0">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.5" minWidth="10.0" prefWidth="102.5" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.5" minWidth="10.0" prefWidth="135.5" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.0" minWidth="10.0" prefWidth="183.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="497.5" minWidth="10.0" prefWidth="417.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="81.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="139.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="183.0" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="200.0" minHeight="0.0" prefHeight="142.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="190.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
                     </rowConstraints>
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
                      <children>
-                        <RadioButton fx:id="checking" mnemonicParsing="false" onAction="#C" selected="true" text="Checking">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="accountType" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="savings" mnemonicParsing="false" onAction="#S" text="Savings" toggleGroup="$accountType" GridPane.rowIndex="1" />
-                        <RadioButton fx:id="collegeChecking" mnemonicParsing="false" onAction="#CC" text="College Checking" toggleGroup="$accountType" GridPane.columnIndex="1" />
-                        <RadioButton fx:id="moneyMarket" mnemonicParsing="false" onAction="#MM" text="Money Market" toggleGroup="$accountType" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="First Name" GridPane.halignment="RIGHT">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <font>
+                              <Font name="SansSerif Regular" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Last Name" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <font>
+                              <Font name="SansSerif Regular" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="78.0" prefWidth="90.0" text="Date of Birth" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <font>
+                              <Font name="SansSerif Regular" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="fName" maxWidth="297.0" prefHeight="21.0" prefWidth="297.0" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="lName" maxWidth="297.0" prefHeight="21.0" prefWidth="297.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <DatePicker fx:id="dob" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </DatePicker>
+                        <Label prefHeight="26.0" prefWidth="60.0" text="Amount" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="SansSerif Regular" size="16.0" />
+                           </font>
+                        </Label>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <children>
+                              <GridPane prefHeight="159.0" prefWidth="220.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.5" minWidth="10.0" prefWidth="102.5" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.5" minWidth="10.0" prefWidth="135.5" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <RadioButton fx:id="checking" mnemonicParsing="false" onAction="#C" selected="true" text="Checking">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="accountTypeOC" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton fx:id="savings" mnemonicParsing="false" onAction="#S" text="Savings" toggleGroup="$accountTypeOC" GridPane.rowIndex="1" />
+                                    <RadioButton fx:id="collegeChecking" mnemonicParsing="false" onAction="#CC" text="College Checking" toggleGroup="$accountTypeOC" GridPane.columnIndex="1" />
+                                    <RadioButton fx:id="moneyMarket" mnemonicParsing="false" onAction="#MM" text="Money Market" toggleGroup="$accountTypeOC" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
+                              <VBox fx:id="collegeOCbox" prefHeight="159.0" prefWidth="193.0">
+                                 <children>
+                                    <Group fx:id="collegeOCgroup" disable="true">
+                                       <children>
+                                          <RadioButton fx:id="newBrunswick" mnemonicParsing="false" text="New Brunswick">
+                                             <padding>
+                                                <Insets left="50.0" />
+                                             </padding>
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="collegeOC" />
+                                             </toggleGroup>
+                                          </RadioButton>
+                                          <RadioButton fx:id="newark" layoutY="28.0" mnemonicParsing="false" text="Newark" toggleGroup="$collegeOC">
+                                             <padding>
+                                                <Insets left="50.0" />
+                                             </padding>
+                                          </RadioButton>
+                                          <RadioButton fx:id="camden" layoutY="56.0" mnemonicParsing="false" text="Camden" toggleGroup="$collegeOC">
+                                             <padding>
+                                                <Insets left="50.0" />
+                                             </padding>
+                                          </RadioButton>
+                                       </children>
+                                    </Group>
+                                    <CheckBox fx:id="isLoyalOC" disable="true" mnemonicParsing="false" text="Loyal Customer">
+                                       <padding>
+                                          <Insets left="50.0" />
+                                       </padding>
+                                       <VBox.margin>
+                                          <Insets top="30.0" />
+                                       </VBox.margin>
+                                    </CheckBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Label prefHeight="78.0" prefWidth="100.0" text="Account Type" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="SansSerif Regular" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="initialDeposit" maxWidth="297.0" prefHeight="21.0" prefWidth="297.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </TextField>
                      </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
                   </GridPane>
-                  <VBox prefHeight="159.0" prefWidth="193.0">
+                  <HBox prefHeight="59.0" prefWidth="600.0">
                      <children>
-                        <RadioButton fx:id="newBrunswick" disable="true" mnemonicParsing="false" text="New Brunswick">
-                           <padding>
-                              <Insets left="50.0" />
-                           </padding>
+                        <Button mnemonicParsing="false" onAction="#O" prefHeight="37.0" prefWidth="300.0" text="Open">
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#C" prefHeight="37.0" prefWidth="300.0" text="Close">
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox prefHeight="59.0" prefWidth="600.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#D" prefHeight="37.0" prefWidth="300.0" text="Deposit">
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#W" prefHeight="37.0" prefWidth="300.0" text="Withdraw">
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+                  <TextArea fx:id="outText" editable="false" prefHeight="243.0" prefWidth="580.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </TextArea>
+               </children>
+            </VBox>
+         </content>
+      </Tab>
+      <Tab closable="false" text="Account Database">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="600.0">
+                     <children>
+                        <GridPane prefHeight="290.0" prefWidth="600.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Button minHeight="50.0" minWidth="205.0" mnemonicParsing="false" onAction="#P" text="Print All Accounts" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                              <Button minHeight="50.0" minWidth="205.0" mnemonicParsing="false" onAction="#U" text="Calculate Interest and Fees" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                              <Button minHeight="50.0" minWidth="205.0" mnemonicParsing="false" onAction="#PT" text="Print All Accounts by Types" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                              <Button minHeight="50.0" minWidth="205.0" mnemonicParsing="false" onAction="#PI" text="Apply Interests and Fees" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </GridPane>
+                        <TextArea fx:id="outText" editable="false" prefHeight="244.0" prefWidth="600.0">
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="college" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="newark" disable="true" mnemonicParsing="false" text="Newark" toggleGroup="$college">
-                           <padding>
-                              <Insets left="50.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </RadioButton>
-                        <RadioButton fx:id="camden" disable="true" mnemonicParsing="false" text="Camden" toggleGroup="$college">
-                           <padding>
-                              <Insets left="50.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </RadioButton>
-                        <CheckBox fx:id="isLoyal" disable="true" mnemonicParsing="false" text="Loyal Customer">
-                           <padding>
-                              <Insets left="50.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets top="30.0" />
-                           </VBox.margin>
-                        </CheckBox>
+                        </TextArea>
                      </children>
                   </VBox>
                </children>
-            </HBox>
-         </children>
-         <VBox.margin>
-            <Insets top="20.0" />
-         </VBox.margin>
-      </GridPane>
-      <HBox fx:id="openCloseButtons" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Button fx:id="open" mnemonicParsing="false" prefHeight="37.0" prefWidth="300.0" text="Open">
-               <HBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="close" mnemonicParsing="false" prefHeight="37.0" prefWidth="300.0" text="Close">
-               <HBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-      <TextArea fx:id="outText" prefHeight="200.0" prefWidth="200.0" />
-   </children>
-</VBox>
+            </AnchorPane>
+        </content>
+      </Tab>
+   </tabs>
+</TabPane>

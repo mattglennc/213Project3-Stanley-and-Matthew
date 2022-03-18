@@ -17,7 +17,7 @@ public class BankTellerMain extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader =
                 new FXMLLoader(BankTellerMain.class.getResource("BankTellerView.fxml"));
-                Scene openClose = new Scene(fxmlLoader.load(), 500, 500);
+                Scene openClose = new Scene(fxmlLoader.load(), 600, 600);
                 //Scene depositWithdraw = new Scene(fxmlLoader.load(), 500, 500);
                 stage.setTitle("BankTeller");
                 stage.setScene(openClose);
