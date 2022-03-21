@@ -65,7 +65,9 @@ public class BankTellerController {
     private RadioButton newark;
 
     @FXML
-    private TextArea outText;
+    private TextArea outText1;
+    @FXML
+    private TextArea outText2;
 
     @FXML
     private RadioButton savings;
@@ -74,7 +76,8 @@ public class BankTellerController {
     void initialize(){
         this.accountDatabase = new AccountDatabase();
         String l = "Gay";
-        outText.appendText(l);
+        outText1.appendText(l);
+        outText2.appendText(l);
     }
 
     void disableCC(boolean cc){

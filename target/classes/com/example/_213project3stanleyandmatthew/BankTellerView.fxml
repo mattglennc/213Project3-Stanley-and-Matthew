@@ -205,7 +205,7 @@
                         <Insets top="10.0" />
                      </padding>
                   </HBox>
-                  <TextArea fx:id="outText" editable="false" prefHeight="243.0" prefWidth="580.0">
+                  <TextArea fx:id="outText1" editable="false" prefHeight="243.0" prefWidth="580.0">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
@@ -252,7 +252,7 @@
                               </Button>
                            </children>
                         </GridPane>
-                        <TextArea fx:id="outText" editable="false" prefHeight="244.0" prefWidth="600.0">
+                        <TextArea fx:id="outText2" editable="false" prefHeight="244.0" prefWidth="600.0">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
