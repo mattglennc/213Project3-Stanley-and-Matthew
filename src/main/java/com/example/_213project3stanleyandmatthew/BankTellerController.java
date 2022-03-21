@@ -85,9 +85,8 @@ public class BankTellerController {
     @FXML
     void initialize(){
         this.accountDatabase = new AccountDatabase();
-        String l = "Gay";
-        outText1.appendText(l);
-        outText2.appendText(l);
+        outText1.appendText("Bank Teller is running. \n");
+        outText2.appendText("Bank Teller is running. \n");
     }
 
     void disableCC(boolean cc){
@@ -212,8 +211,37 @@ public class BankTellerController {
         }
     }
 
+    /**
+     * Checks to see if there are valid inputs in the UI text boxes to run an open command with
+     *
+     * @return true if the inputs are valid, false if it fails any of the checks.
+     */
+    private boolean inputCheckerO() {
+     if(fName.getText().isEmpty()){
+         outText1.appendText("Missing data for opening an account.\n");
+         return false;
+     }
+     if(lName.getText().isEmpty()){
+         outText1.appendText("Missing data for opening an account.\n");
+         return false;
+        }
+     if(dob.getValue() == null){
+         outText1.appendText("Missing data for opening an account.\n");
+         return false;
+     }
+     if(initialDeposit.getText().isEmpty()){
+         outText1.appendText("Missing data for opening an account.\n");
+         return false;
+        }
+    return true;
+    }
+
+
     @FXML
     void O(ActionEvent event) {
+        if(!inputCheckerO()){ //checks that enough parameters were input
+            return;
+        }
         String fname = fName.getText();
         String lname = lName.getText();
         String birthDate = String.valueOf(dob.getValue());
@@ -239,7 +267,7 @@ public class BankTellerController {
             account = mmIsValid(balance) ? new MoneyMarket(profile, OPEN, balance) : null;
         }
 
-        else if(collegeChecking.isSelected()){
+        else if(collegeChecking.isSelected()){ //probably make this into a private method
             if(camden.isSelected()){
                 int school = CAMDEN;
                 account = hasValidSchool(school) ? new CollegeChecking(profile, OPEN, balance, school) : null;
@@ -252,10 +280,19 @@ public class BankTellerController {
                 int school = NEWBRUNSWICK;
                 account = hasValidSchool(school) ? new CollegeChecking(profile, OPEN, balance, school) : null;
             }
+            else{
+                outText1.appendText("No Campus is selected for college checking account, select a campus \n");
+                return;
+            }
+        }
+        else {
+            outText1.appendText("No Account Type Selected, Select an Account Type. \n");
+            return;
         }
         if (account != null) {
             validateOpening(account);
         }
+        return;
     }
 
     @FXML
