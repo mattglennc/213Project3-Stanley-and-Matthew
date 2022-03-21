@@ -133,7 +133,7 @@ public class BankTellerController {
      */
     private boolean mmIsValid(Double initialDeposit) {
         if (initialDeposit < MIN_MM_DEPOSIT) {
-            System.out.println("Minimum of $2500 to open a MoneyMarket account.");
+            outText1.appendText("Minimum of $2500 to open a MoneyMarket account. \n");
             return false;
         }
 
@@ -176,17 +176,17 @@ public class BankTellerController {
      * @param initialAmount: the string with the supposed initialAmount for the account to open
      * @return true if the initialAmount is valid, false if it fails any of the checks.
      */
-    private static boolean isDoubleAndExcepOp(String initialAmount) {
+    private boolean isDoubleAndExcepOp(String initialAmount) {
         try {
             Double.parseDouble(initialAmount);
         } catch (NumberFormatException e) {
-            System.out.println("Not a valid amount.");
+            outText1.appendText("Not a valid amount. \n");
             return false;
         } catch (NullPointerException e) {
             return false;
         }
         if (Double.parseDouble(initialAmount) <= 0) {
-            System.out.println("Initial deposit cannot be 0 or negative.");
+            outText1.appendText("Initial deposit cannot be 0 or negative. \n");
             return false;
         }
         // only got here if we didn't return false
@@ -203,12 +203,12 @@ public class BankTellerController {
         boolean opened = this.accountDatabase.open(account);
         if (opened) {
             if (accountNum != this.accountDatabase.getNumAccounts()) {
-                System.out.println("Account opened.");
+                outText1.appendText("Account opened. \n");
             } else {
-                System.out.println("Account reopened.");
+                outText1.appendText("Account reopened. \n");
             }
         } else {
-            System.out.println(account.holder.toString() + " same account(type) is in the database.");
+            outText1.appendText(account.holder.toString() + " same account(type) is in the database. \n");
         }
     }
 
