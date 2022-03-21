@@ -396,7 +396,7 @@ public class BankTellerController {
     }
 
     @FXML
-    void U(ActionEvent event) {
+    void UB(ActionEvent event) {
 
     }
 
