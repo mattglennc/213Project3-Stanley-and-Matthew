@@ -113,9 +113,88 @@ public class BankTellerController {
         disableLoyalCustomer(true);
     }
 
+    /**
+     * Takes a String depositAmount from the D command and checks if the depositAmount is valid
+     *
+     * @param depositAmount: the string with the supposed depositAmount for the deposit call
+     * @return true if the depositAmount is valid, false if it fails any of the checks.
+     */
+    private boolean isDoubleAndExcepDep(String depositAmount) {
+        try {
+            Double.parseDouble(depositAmount);
+        } catch (NumberFormatException e) {
+            outText1.appendText("Not a valid amount.\n");
+            return false;
+        } catch (NullPointerException e) {
+            return false;
+        }
+        if (Double.parseDouble(depositAmount) <= 0) {
+            outText1.appendText("Deposit - amount cannot be 0 or negative.\n");
+            return false;
+        }
+        // only got here if we didn't return false
+        return true;
+    }
+
+    /**
+     * Checks to see if there are valid inputs in the UI text boxes to run a deposit command with
+     *
+     * @return true if the inputs are valid, false if it fails any of the checks.
+     */
+    private boolean inputCheckerD() {
+        if(fName.getText().isEmpty()){
+            outText1.appendText("Missing data for depositing to an account.\n");
+            return false;
+        }
+        if(lName.getText().isEmpty()){
+            outText1.appendText("Missing data for depositing to an account.\n");
+            return false;
+        }
+        if(dob.getValue() == null){
+            outText1.appendText("Missing data for depositing to an account.\n");
+            return false;
+        }
+        if(initialDeposit.getText().isEmpty()){
+            outText1.appendText("Missing data for depositing to an account.\n");
+            return false;
+        }
+        return true;
+    }
+
     @FXML
     void D(ActionEvent event) {
-
+        if(!inputCheckerD()){ //checks that enough parameters were input
+            return;
+        }
+        String fname = fName.getText();
+        String lname = lName.getText();
+        String birthDate = String.valueOf(dob.getValue());
+        Profile profile = new Profile(fname, lname, birthDate);
+        String depositAmount = initialDeposit.getText();
+        Account account = null;
+        if (!isDoubleAndExcepDep(depositAmount)) {
+            return;
+        }
+        if (checking.isSelected()) {
+            account = new Checking(profile, OPEN, Double.parseDouble(depositAmount));
+        } else if (collegeChecking.isSelected()) {
+            account = new CollegeChecking(profile, OPEN, Double.parseDouble(depositAmount), DEFAULTSCHOOL);
+        } else if (moneyMarket.isSelected()) {
+            account = new MoneyMarket(profile, OPEN, Double.parseDouble(depositAmount));
+        } else if (savings.isSelected()){ //must equal S if it reaches here
+            account = new Savings(profile, OPEN, Double.parseDouble(depositAmount), DEFAULTLOYALTY);
+        }
+        else{
+            outText1.appendText("Select an Account Type to deposit into. \n");
+            return;
+        }
+        boolean deposit = this.accountDatabase.isValidDeposit(account);
+        if (deposit) {
+            outText1.appendText("Deposit - balance updated. \n");
+        } else {
+            outText1.appendText(profile.toString() + " " + account.getType() + " is not in the database. \n");
+        }
+        return;
     }
 
     @FXML
