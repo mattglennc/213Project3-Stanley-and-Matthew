@@ -162,7 +162,6 @@ public class BankTellerController {
      */
     private boolean profileIsValid(Profile profile) {
         if (!profile.hasValidDOB()) {
-            outText1.appendText(profile.toString());
             outText1.appendText("Date of birth invalid.\n");
             return false;
         }
