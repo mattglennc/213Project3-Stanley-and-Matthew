@@ -22,5 +22,6 @@ public class BankTellerMain extends Application {
                 stage.setTitle("BankTeller");
                 stage.setScene(openClose);
                 stage.show();
+
     }
 }

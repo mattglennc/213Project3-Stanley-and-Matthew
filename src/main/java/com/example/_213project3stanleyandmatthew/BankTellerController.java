@@ -1,5 +1,6 @@
 package com.example._213project3stanleyandmatthew;
 
+import com.example._213project3stanleyandmatthew.accounting.AccountDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -10,8 +11,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class BankTellerController {
+
+    private AccountDatabase accountDatabase;
+
+
 
     @FXML
     private ToggleGroup accountTypeOC;
@@ -64,6 +70,13 @@ public class BankTellerController {
     @FXML
     private RadioButton savings;
 
+    @FXML
+    void initialize(){
+        this.accountDatabase = new AccountDatabase();
+        String l = "Gay";
+        outText.appendText(l);
+    }
+
     void disableCC(boolean cc){
         collegeOCgroup.setDisable(cc);
         camden.setSelected(false);
@@ -101,6 +114,21 @@ public class BankTellerController {
 
     @FXML
     void O(ActionEvent event) {
+        String fname = fName.getText();
+        String lname = lName.getText();
+        if(checking.isSelected()){
+
+        }
+        else if(savings.isSelected()){
+
+        }
+        else if(moneyMarket.isSelected()){
+
+        }
+
+        else if(collegeChecking.isSelected()){
+
+        }
 
     }
 
