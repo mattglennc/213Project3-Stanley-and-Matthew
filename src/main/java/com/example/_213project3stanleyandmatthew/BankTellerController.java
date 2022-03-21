@@ -374,9 +374,58 @@ public class BankTellerController {
         return;
     }
 
+    /**
+     * Checks to see if there are valid inputs in the UI text boxes to run a close command with
+     *
+     * @return true if the inputs are valid, false if it fails any of the checks.
+     */
+    private boolean inputCheckerC() {
+        if(fName.getText().isEmpty()){
+            outText1.appendText("Missing data for closing an account.\n");
+            return false;
+        }
+        if(lName.getText().isEmpty()){
+            outText1.appendText("Missing data for closing an account.\n");
+            return false;
+        }
+        if(dob.getValue() == null){
+            outText1.appendText("Missing data for closing an account.\n");
+            return false;
+        }
+        return true;
+    }
+
+
+
     @FXML
     void Close(ActionEvent event) {
-
+        if(!inputCheckerC()){ //checks that enough parameters were input
+            return;
+        }
+        String fname = fName.getText();
+        String lname = lName.getText();
+        String birthDate = String.valueOf(dob.getValue());
+        Profile profile = new Profile(fname, lname, birthDate);
+        Account account;
+        if (checking.isSelected()) {
+            account = new Checking(profile, OPEN, DEFAULTBALANCE);
+        } else if (collegeChecking.isSelected()) {
+            account = new CollegeChecking(profile, OPEN, DEFAULTBALANCE, DEFAULTSCHOOL);
+        } else if (moneyMarket.isSelected()) {
+            account = new MoneyMarket(profile, OPEN, DEFAULTBALANCE);
+        } else if (savings.isSelected()) {
+            account = new Savings(profile, OPEN, DEFAULTBALANCE, DEFAULTLOYALTY);
+        } else{ //reaches here only if no account type was checcked
+            outText1.appendText("Select an Account Type to close. \n");
+            return;
+        }
+        boolean accountClosed = accountDatabase.close(account);
+        if (accountClosed) {
+            outText1.appendText("Account closed. \n");
+        } else {
+            outText1.appendText("Account is closed already. \n");
+        }
+        return;
     }
 
     @FXML
@@ -405,9 +454,89 @@ public class BankTellerController {
 
     }
 
+    /**
+     * Checks to see if there are valid inputs in the UI text boxes to run a withdraw command with
+     *
+     * @return true if the inputs are valid, false if it fails any of the checks.
+     */
+    private boolean inputCheckerW() {
+        if(fName.getText().isEmpty()){
+            outText1.appendText("Missing data for withdrawing from an account.\n");
+            return false;
+        }
+        if(lName.getText().isEmpty()){
+            outText1.appendText("Missing data for withdrawing from an account.\n");
+            return false;
+        }
+        if(dob.getValue() == null){
+            outText1.appendText("Missing data for withdrawing from an account.\n");
+            return false;
+        }
+        if(initialDeposit.getText().isEmpty()){
+            outText1.appendText("Missing data for withdrawing from an account.\n");
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Takes a String withdrawal amount from the W command and checks if the withdrawAmount is valid
+     *
+     * @param withdrawAmount: the string with the supposed withdrawAmount for the withdraw call
+     * @return true if the withdrawAmount is valid, false if it fails any of the checks.
+     */
+    private boolean isDoubleAndExcepWith(String withdrawAmount) {
+        try {
+            Double.parseDouble(withdrawAmount);
+        } catch (NumberFormatException e) {
+            outText1.appendText("Not a valid amount. \n");
+            return false;
+        } catch (NullPointerException e) {
+            return false;
+        }
+        if (Double.parseDouble(withdrawAmount) <= 0) {
+            outText1.appendText("Withdraw - amount cannot be 0 or negative. \n");
+            return false;
+        }
+        // only got here if we didn't return false
+        return true;
+    }
+
     @FXML
     void W(ActionEvent event) {
-
+        if(!inputCheckerW()){ //checks that enough parameters were input
+            return;
+        }
+        String fname = fName.getText();
+        String lname = lName.getText();
+        String birthDate = String.valueOf(dob.getValue());
+        Profile profile = new Profile(fname, lname, birthDate);
+        Account account = null;
+        String withdrawAmount = initialDeposit.getText();
+        if (!isDoubleAndExcepWith(withdrawAmount)) {
+            return;
+        }
+        if (checking.isSelected()) {
+            account = new Checking(profile, OPEN, Double.parseDouble(withdrawAmount));
+        } else if (collegeChecking.isSelected()) {
+            account = new CollegeChecking(profile, OPEN, Double.parseDouble(withdrawAmount), DEFAULTSCHOOL);
+        } else if (moneyMarket.isSelected()) {
+            account = new MoneyMarket(profile, OPEN, Double.parseDouble(withdrawAmount));
+        } else if (savings.isSelected()){ //must equal S if it reaches here
+            account = new Savings(profile, OPEN, Double.parseDouble(withdrawAmount), DEFAULTLOYALTY);
+        } else{
+            outText1.appendText("Select an Account Type to withdraw from. \n");
+            return;
+        }
+        boolean successfulWithdraw = this.accountDatabase.withdraw(account);
+        if (successfulWithdraw) {
+            outText1.appendText("Withdraw - balance updated. \n");
+        } else if (accountDatabase.accountExists(account)) {
+            outText1.appendText("Withdraw - insufficient fund. \n");
+        } else {
+            outText1.appendText(profile.toString() + " " + account.getType() + " is not in the database. \n");
+        }
+        return;
     }
 
 }
