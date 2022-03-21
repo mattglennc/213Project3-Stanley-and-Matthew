@@ -375,6 +375,11 @@ public class BankTellerController {
     }
 
     @FXML
+    void Close(ActionEvent event) {
+
+    }
+
+    @FXML
     void P(ActionEvent event) {
 
     }
