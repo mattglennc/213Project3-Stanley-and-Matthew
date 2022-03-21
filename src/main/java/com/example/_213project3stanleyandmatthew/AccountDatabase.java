@@ -1,4 +1,4 @@
-package com.example._213project3stanleyandmatthew.accounting;
+package com.example._213project3stanleyandmatthew;
 
 import java.text.DecimalFormat;
 

@@ -1,4 +1,4 @@
-package com.example._213project3stanleyandmatthew.accounting;
+package com.example._213project3stanleyandmatthew;
 
 /**
  * This MoneyMarket class provides the constructors and methods for the MoneyMarket object which

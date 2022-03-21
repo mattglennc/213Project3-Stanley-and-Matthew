@@ -8,6 +8,8 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/17.0.1/javafx-base-17.0.1-sources.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/javafx-sdk-17.0.2" />
     </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/Downloads/javafx-sdk-17.0.2" recursive="false" type="SOURCES" />
   </library>
 </component>

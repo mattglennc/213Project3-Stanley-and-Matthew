@@ -1,14 +1,5 @@
 package com.example._213project3stanleyandmatthew;
 
-import com.example._213project3stanleyandmatthew.accounting.AccountDatabase;
-import com.example._213project3stanleyandmatthew.accounting.Profile;
-import com.example._213project3stanleyandmatthew.accounting.Checking;
-import com.example._213project3stanleyandmatthew.accounting.CollegeChecking;
-import com.example._213project3stanleyandmatthew.accounting.Date;
-import com.example._213project3stanleyandmatthew.accounting.MoneyMarket;
-import com.example._213project3stanleyandmatthew.accounting.Savings;
-import com.example._213project3stanleyandmatthew.accounting.Account;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -171,7 +162,8 @@ public class BankTellerController {
      */
     private boolean profileIsValid(Profile profile) {
         if (!profile.hasValidDOB()) {
-            System.out.println("Date of birth invalid.");
+            outText1.appendText(profile.toString());
+            outText1.appendText("Date of birth invalid.\n");
             return false;
         }
 
@@ -229,7 +221,7 @@ public class BankTellerController {
         Profile profile = new Profile(fname, lname, birthDate);
         String initialBalance = initialDeposit.getText();
         double balance = Double.parseDouble(initialBalance);
-        Account account;
+        Account account = null;
         if (!isDoubleAndExcepOp(initialBalance) || !profileIsValid(profile)) {
             return;
         }

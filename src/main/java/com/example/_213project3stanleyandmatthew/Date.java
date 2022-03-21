@@ -1,4 +1,4 @@
-package com.example._213project3stanleyandmatthew.accounting;
+package com.example._213project3stanleyandmatthew;
 
 import java.util.Calendar;
 
@@ -29,14 +29,14 @@ public class Date implements Comparable<Date> {
      * @param date: the date string from which the year, month, and date are taken and stored.
      */
     public Date(String date) {
-        String[] dateStrings = date.split("/"); //Breaks date string into its mm, dd, and yyyy components
+        String[] dateStrings = date.split("-"); //Breaks date string into its mm, dd, and yyyy components
         for (int i = 0; i < dateStrings.length; i++) {
             if (i == 0) {
-                this.month = Integer.parseInt(dateStrings[i]); //stores month, the first element of dateStrings
-            } else if (i == 1) {
-                this.day = Integer.parseInt(dateStrings[i]); //stores day, the second element of dateStrings
-            } else {
                 this.year = Integer.parseInt(dateStrings[i]); // stores year, the final element of dateStrings
+            } else if (i == 1) {
+                this.month = Integer.parseInt(dateStrings[i]); //stores month, the first element of dateStrings
+            } else {
+                this.day = Integer.parseInt(dateStrings[i]); //stores day, the second element of dateStrings
             }
 
         }

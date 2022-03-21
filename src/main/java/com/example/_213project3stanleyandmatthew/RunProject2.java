@@ -1,4 +1,4 @@
-package com.example._213project3stanleyandmatthew.accounting;
+package com.example._213project3stanleyandmatthew;
 
 /**
  * This RunProject1 class creates a new BankTeller and calls the run method.
