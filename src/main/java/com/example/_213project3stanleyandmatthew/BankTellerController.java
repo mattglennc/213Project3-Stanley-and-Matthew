@@ -168,6 +168,13 @@ public class BankTellerController {
             outText1.appendText("Missing data for depositing to an account.\n");
             return false;
         }
+        try{
+            double balance = Double.parseDouble(initialDeposit.getText());
+        }
+        catch(NumberFormatException numEx){
+            outText1.appendText("Amount must be a number.\n");
+            return false;
+        }
         return true;
     }
 
@@ -330,6 +337,13 @@ public class BankTellerController {
          outText1.appendText("Missing data for opening an account.\n");
          return false;
         }
+     try{
+         double balance = Double.parseDouble(initialDeposit.getText());
+     }
+     catch(NumberFormatException error){
+         outText1.appendText("Amount must be a number.\n");
+         return false;
+     }
     return true;
     }
 
@@ -416,6 +430,13 @@ public class BankTellerController {
             outText1.appendText("Missing data for closing an account.\n");
             return false;
         }
+        try{
+            double balance = Double.parseDouble(initialDeposit.getText());
+        }
+        catch(NumberFormatException numEx){
+            outText1.appendText("Amount must be a number.\n");
+            return false;
+        }
         return true;
     }
 
@@ -451,9 +472,12 @@ public class BankTellerController {
         boolean accountClosed = accountDatabase.close(account);
         if (accountClosed) {
             outText1.appendText("Account closed. \n");
-        } else {
+        } else if (accountDatabase.accountExists(account)) {
             outText1.appendText("Account is closed already. \n");
+        } else {
+            outText1.appendText(profile.toString() + " " + account.getType() + " is not in the database. \n");
         }
+
         return;
     }
 
@@ -567,6 +591,13 @@ public class BankTellerController {
         }
         if(initialDeposit.getText().isEmpty()){
             outText1.appendText("Missing data for withdrawing from an account.\n");
+            return false;
+        }
+        try{
+            double balance = Double.parseDouble(initialDeposit.getText());
+        }
+        catch(NumberFormatException numEx){
+            outText1.appendText("Amount must be a number.\n");
             return false;
         }
         return true;
