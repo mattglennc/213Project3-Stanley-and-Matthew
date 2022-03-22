@@ -430,13 +430,6 @@ public class BankTellerController {
             outText1.appendText("Missing data for closing an account.\n");
             return false;
         }
-        try{
-            double balance = Double.parseDouble(initialDeposit.getText());
-        }
-        catch(NumberFormatException numEx){
-            outText1.appendText("Amount must be a number.\n");
-            return false;
-        }
         return true;
     }
 
