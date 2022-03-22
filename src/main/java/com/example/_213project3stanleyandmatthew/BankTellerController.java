@@ -168,7 +168,7 @@ public class BankTellerController {
             outText1.appendText("Missing data for depositing to an account.\n");
             return false;
         }
-        if (!isDoubleAndExcepOp(initialDeposit.getText())) {
+        if (!isDoubleAndExcepDep(initialDeposit.getText())) {
             return false;
         }
         return true;
@@ -209,7 +209,11 @@ public class BankTellerController {
         if (deposit) {
             outText1.appendText("Deposit - balance updated. \n");
         } else {
-            outText1.appendText(profile.toString() + " " + account.getType() + " is not in the database. \n");
+            if (this.accountDatabase.accountExists(account)) {
+                outText1.appendText("Cannot deposit to closed account. \n");
+            } else{
+                outText1.appendText(profile.toString() + " " + account.getType() + " is not in the database. \n");
+            }
         }
         return;
     }
@@ -575,7 +579,7 @@ public class BankTellerController {
             outText1.appendText("Missing data for withdrawing from an account.\n");
             return false;
         }
-        if (!isDoubleAndExcepOp(initialDeposit.getText())) {
+        if (!isDoubleAndExcepWith(initialDeposit.getText())) {
             return false;
         }
         return true;
@@ -638,7 +642,9 @@ public class BankTellerController {
         boolean successfulWithdraw = this.accountDatabase.withdraw(account);
         if (successfulWithdraw) {
             outText1.appendText("Withdraw - balance updated. \n");
-        } else if (accountDatabase.accountExists(account)) {
+        } else if (accountDatabase.accountIsClosed(account)){
+            outText1.appendText("Cannot withdraw from closed account. \n");
+        }else if (accountDatabase.accountExists(account)) {
             outText1.appendText("Withdraw - insufficient fund. \n");
         } else {
             outText1.appendText(profile.toString() + " " + account.getType() + " is not in the database. \n");

@@ -163,6 +163,11 @@ public class AccountDatabase {
         if (this.accounts[find(account)].getType() != account.getType()) {
             return false;
         }
+
+        if (this.accounts[find(account)].isClosed()) {
+            return false;
+        }
+
         deposit(account);
         return true;
     }
@@ -208,6 +213,16 @@ public class AccountDatabase {
     }
 
     /**
+     * Takes an account and checks if it exists in the AccountDatabase.
+     *
+     * @param account - the account that needs to have its existence checked
+     * @return true if account exists, false if account does not already exist
+     */
+    public boolean accountIsClosed(Account account) {
+        return find(account) != NOT_FOUND && this.accounts[find(account)].getType() == account.getType() && this.accounts[find(account)].isClosed();
+    }
+
+    /**
      * Takes an account and withdraws money out of it if it is found in the AccountDatabase.
      *
      * @param account - the account that needs money withdrawn from it in the AccountDatabase
@@ -221,6 +236,10 @@ public class AccountDatabase {
         }
 
         if (this.accounts[find(account)].getType() != account.getType()) {
+            return false;
+        }
+
+        if (this.accounts[find(account)].isClosed()) {
             return false;
         }
 
