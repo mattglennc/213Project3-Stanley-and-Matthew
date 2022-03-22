@@ -12,6 +12,16 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+
+/**
+ * This BankTellerController class holds an AccountDatabase and acts as a way to interact with it using the JavaFX GUI.
+ * the necessary commands all have their own even handlers that can be called by clicking on their respective buttons
+ * in the GUI. Private helper methods are included
+ * initialize() creates the AccountDatabase and starts its operation.
+ *
+ * @author Matthew Carrascoso & Stanley Chou
+ */
+
 public class BankTellerController {
 
     private AccountDatabase accountDatabase;
@@ -161,6 +171,13 @@ public class BankTellerController {
         return true;
     }
 
+
+    /**
+     * Takes the parameters needed to deposit inta a specific account
+     * the parameters are loaded form the GUI and then checked  in inputCheckerD() to ensure
+     * they are valid parameters, once all checks are passed, the deposit method
+     * from the AccountDatabase class is called to deposit the specified amount into the account
+     */
     @FXML
     void D(ActionEvent event) {
         if(!inputCheckerD()){ //checks that enough parameters were input
@@ -232,6 +249,7 @@ public class BankTellerController {
 
         return true;
     }
+
     /**
      * Checks if profile has a valid DOB.
      *
@@ -315,7 +333,13 @@ public class BankTellerController {
     return true;
     }
 
-
+    /**
+     * Takes the parameters needed to open a new account
+     * the parameters are loaded form the GUI and then checked in inputCheckerO() and
+     * isDoubleAndExcepOp() to ensure they are valid parameters to open an account with,
+     * once all checks are passed the open method from the AccountDatabase class is called to open
+     * an account with the specified parameters in the AccountDatabase.
+     */
     @FXML
     void O(ActionEvent event) {
         if(!inputCheckerO()){ //checks that enough parameters were input
@@ -396,7 +420,12 @@ public class BankTellerController {
     }
 
 
-
+    /**
+     * Takes the parameters needed to close a specific account
+     * the parameters are loaded from the GUI and then checked to ensure
+     * they are valid parameters. Then the close() method
+     * from the AccountDatabase class is called to close the specified account
+     */
     @FXML
     void Close(ActionEvent event) {
         if(!inputCheckerC()){ //checks that enough parameters were input
@@ -428,6 +457,10 @@ public class BankTellerController {
         return;
     }
 
+    /**
+     * Prints all the accounts in the AccountDatabase in their current order
+     * by calling the print method in the AccountDatabase class.
+     */
     @FXML
     void P(ActionEvent event) {
         if (this.accountDatabase.getNumAccounts() == 0) {
@@ -445,6 +478,10 @@ public class BankTellerController {
             }
     }
 
+    /**
+     * Prints all the accounts in the AccountDatabase sorted by account type
+     * by calling the printFeeAndInterest method in the AccountDatabase class.
+     */
     @FXML
     void PI(ActionEvent event) {
         if (this.accountDatabase.getNumAccounts() == 0) {
@@ -462,6 +499,10 @@ public class BankTellerController {
         }
     }
 
+    /**
+     * Prints all the accounts in the AccountDatabase sorted by account type
+     * by calling the printByAccountType method in the AccountDatabase class.
+     */
     @FXML
     void PT(ActionEvent event) {
         if (this.accountDatabase.getNumAccounts() == 0) {
@@ -485,6 +526,10 @@ public class BankTellerController {
         disableLoyalCustomer(false);
     }
 
+    /**
+     * Updates the balances of all the accounts in the AccountDatabase with their monthly interest rate and fee
+     * by calling the updateBalances method in the AccountDatabase class.
+     */
     @FXML
     void UB(ActionEvent event) {
         if (this.accountDatabase.getNumAccounts() == 0) {
@@ -550,6 +595,14 @@ public class BankTellerController {
         return true;
     }
 
+
+
+    /**
+     * Takes the parameters needed to withdraw from a specific account
+     * the parameters are loaded form the GUI and then checked  in inputCheckerW() to ensure
+     * they are valid parameters, once all checks are passed the withdraw method
+     * from the AccountDatabase class is called to withdraw the specified amount from the account
+     */
     @FXML
     void W(ActionEvent event) {
         if(!inputCheckerW()){ //checks that enough parameters were input

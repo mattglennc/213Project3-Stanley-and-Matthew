@@ -7,6 +7,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * This BankTellerMain class launches the GUI and loads its javfx file.
+ * Afterwards operation and event handling is done in the Bank Teller Controller class
+ *
+ * @author Matthew Carrascoso & Stanley Chou
+ */
+
 public class BankTellerMain extends Application {
 
     public static void main(String[] args) {
