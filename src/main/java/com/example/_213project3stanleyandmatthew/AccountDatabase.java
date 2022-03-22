@@ -181,8 +181,10 @@ public class AccountDatabase {
 
     /**
      * Updates the balances in the AccountDatabase based on their account fees and monthly interest rates .
+     *
+     * @return String the final formatted String of accounts to be printed on the GUI
      */
-    public void updateBalances() {
+    public String updateBalances() {
         double updateAmount;
         for (int j = 0; j < this.accounts.length; j++) {
             if (this.accounts[j] == null) {
@@ -191,8 +193,8 @@ public class AccountDatabase {
             updateAmount = this.accounts[j].monthlyInterest() - this.accounts[j].fee();
             this.accounts[j].balance = this.accounts[j].balance + updateAmount;
         }
-        print();
-        return;
+        String finalAccountString = print();
+        return finalAccountString;
     }
 
     /**
@@ -232,11 +234,15 @@ public class AccountDatabase {
 
     /**
      * prints all the accounts in the AccountDatabase in their current order.
+     *
+     * @return String the final formatted String of accounts to be printed on the GUI
      */
-    public void print() {
+    public String print() {
+        String accountsString = "";
         for (int i = 0; i < this.numAcct; i++) {
-            System.out.println(this.accounts[i].toString());
+            accountsString = accountsString + this.accounts[i].toString() + " \n ";
         }
+        return accountsString;
     }
 
     /**
@@ -248,10 +254,14 @@ public class AccountDatabase {
         return this.numAcct;
     }
 
+
     /**
      * prints all the accounts in the AccountDatabase in order of account type.
+     *
+     * @return String the final formatted String of accounts to be printed on the GUI
      */
-    public void printByAccountType() {
+    public String printByAccountType() {
+        String accountsString = "";
         for (int i = 1; i < this.accounts.length; i++) {
             if (accounts[i] == null) {
                 continue;
@@ -265,23 +275,25 @@ public class AccountDatabase {
             }
             accounts[j + 1] = key;
         }
-        print();
-        return;
+        accountsString = print();
+        return accountsString;
     }
 
     /**
      * prints all the accounts in the AccountDatabase with their monthly interest and fee included too.
+     *
+     * @return String the final formatted String of accounts to be printed on the GUI
      */
-    public void printFeeAndInterest() {
+    public String printFeeAndInterest() {
+        String finalAccountString = "";
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
         for (int i = 0; i < this.numAcct; i++) {
             String accountString = this.accounts[i].toString();
             String monthlyInterest = decimalFormat.format(this.accounts[i].monthlyInterest());
             String fee = decimalFormat.format(this.accounts[i].fee());
-            accountString = accountString + "::fee $" + fee + "::monthly interest $" + monthlyInterest;
-            System.out.println(accountString);
+            finalAccountString = finalAccountString + accountString + "::fee $" + fee + "::monthly interest $" + monthlyInterest + " \n ";
         }
-        return;
+        return finalAccountString;
     }
 
 }

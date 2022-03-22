@@ -226,7 +226,7 @@ public class BankTellerController {
      */
     private boolean hasValidSchool(int school) {
         if (school > MAX_VALID_SCHOOL) {
-            System.out.println("Invalid campus code.");
+            System.out.println("Invalid campus code.\n");
             return false;
         }
 
@@ -430,17 +430,53 @@ public class BankTellerController {
 
     @FXML
     void P(ActionEvent event) {
-
+        if (this.accountDatabase.getNumAccounts() == 0) {
+            outText2.appendText("Account Database is empty!\n");
+            return;
+        }
+        else{
+            outText2.appendText("\n");
+            outText2.appendText("*list of accounts in the database*\n");
+            String accounts = this.accountDatabase.print();
+            outText2.appendText(accounts);
+            outText2.appendText("*end of list*\n");
+            outText2.appendText("\n");
+            return;
+            }
     }
 
     @FXML
     void PI(ActionEvent event) {
-
+        if (this.accountDatabase.getNumAccounts() == 0) {
+            outText2.appendText("Account Database is empty!\n");
+            return;
+        }
+        else{
+            outText2.appendText("\n");
+            outText2.appendText("*list of accounts with fee and monthly interest\n");
+            String accounts = this.accountDatabase.printFeeAndInterest();
+            outText2.appendText(accounts);
+            outText2.appendText("*end of list.\n");
+            outText2.appendText("\n");
+            return;
+        }
     }
 
     @FXML
     void PT(ActionEvent event) {
-
+        if (this.accountDatabase.getNumAccounts() == 0) {
+            outText2.appendText("Account Database is empty!\n");
+            return;
+        }
+        else{
+            outText2.appendText("\n");
+            outText2.appendText("*list of accounts by account type.\n");
+            String accounts = this.accountDatabase.printByAccountType();
+            outText2.appendText(accounts);
+            outText2.appendText("*end of list.\n");
+            outText2.appendText("\n");
+            return;
+        }
     }
 
     @FXML
@@ -451,7 +487,19 @@ public class BankTellerController {
 
     @FXML
     void UB(ActionEvent event) {
-
+        if (this.accountDatabase.getNumAccounts() == 0) {
+            outText2.appendText("Account Database is empty!\n");
+            return;
+        }
+        else{
+            outText2.appendText("\n");
+            outText2.appendText("*list of accounts with updated balance\n");
+            String accounts = this.accountDatabase.updateBalances();
+            outText2.appendText(accounts);
+            outText2.appendText("*end of list.\n");
+            outText2.appendText("\n");
+            return;
+        }
     }
 
     /**
