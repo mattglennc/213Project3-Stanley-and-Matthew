@@ -168,11 +168,7 @@ public class BankTellerController {
             outText1.appendText("Missing data for depositing to an account.\n");
             return false;
         }
-        try{
-            double balance = Double.parseDouble(initialDeposit.getText());
-        }
-        catch(NumberFormatException numEx){
-            outText1.appendText("Amount must be a number.\n");
+        if (!isDoubleAndExcepOp(initialDeposit.getText())) {
             return false;
         }
         return true;
@@ -196,9 +192,6 @@ public class BankTellerController {
         Profile profile = new Profile(fname, lname, birthDate);
         String depositAmount = initialDeposit.getText();
         Account account = null;
-        if (!isDoubleAndExcepDep(depositAmount)) {
-            return;
-        }
         if (checking.isSelected()) {
             account = new Checking(profile, OPEN, Double.parseDouble(depositAmount));
         } else if (collegeChecking.isSelected()) {
@@ -337,13 +330,9 @@ public class BankTellerController {
          outText1.appendText("Missing data for opening an account.\n");
          return false;
         }
-     try{
-         double balance = Double.parseDouble(initialDeposit.getText());
-     }
-     catch(NumberFormatException error){
-         outText1.appendText("Amount must be a number.\n");
+     if (!isDoubleAndExcepOp(initialDeposit.getText())) {
          return false;
-     }
+        }
     return true;
     }
 
@@ -366,7 +355,7 @@ public class BankTellerController {
         String initialBalance = initialDeposit.getText();
         double balance = Double.parseDouble(initialBalance);
         Account account = null;
-        if (!isDoubleAndExcepOp(initialBalance) || !profileIsValid(profile)) {
+        if (!profileIsValid(profile)) {
             return;
         }
         if(checking.isSelected()){
@@ -586,11 +575,7 @@ public class BankTellerController {
             outText1.appendText("Missing data for withdrawing from an account.\n");
             return false;
         }
-        try{
-            double balance = Double.parseDouble(initialDeposit.getText());
-        }
-        catch(NumberFormatException numEx){
-            outText1.appendText("Amount must be a number.\n");
+        if (!isDoubleAndExcepOp(initialDeposit.getText())) {
             return false;
         }
         return true;
@@ -638,9 +623,6 @@ public class BankTellerController {
         Profile profile = new Profile(fname, lname, birthDate);
         Account account = null;
         String withdrawAmount = initialDeposit.getText();
-        if (!isDoubleAndExcepWith(withdrawAmount)) {
-            return;
-        }
         if (checking.isSelected()) {
             account = new Checking(profile, OPEN, Double.parseDouble(withdrawAmount));
         } else if (collegeChecking.isSelected()) {
