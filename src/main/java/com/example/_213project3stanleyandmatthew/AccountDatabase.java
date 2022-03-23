@@ -213,10 +213,10 @@ public class AccountDatabase {
     }
 
     /**
-     * Takes an account and checks if it exists in the AccountDatabase.
+     * Takes an account and checks if it is closed in the AccountDatabase.
      *
-     * @param account - the account that needs to have its existence checked
-     * @return true if account exists, false if account does not already exist
+     * @param account - the account that needs to have its status checked
+     * @return true if account is closed, false if account is open.
      */
     public boolean accountIsClosed(Account account) {
         return find(account) != NOT_FOUND && this.accounts[find(account)].getType() == account.getType() && this.accounts[find(account)].isClosed();
