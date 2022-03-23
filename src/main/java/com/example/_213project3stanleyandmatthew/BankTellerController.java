@@ -37,7 +37,9 @@ public class BankTellerController {
     private static final int DEFAULTBALANCE = 1;
     private static final int MAX_VALID_SCHOOL = 2;
     private static final int MIN_MM_DEPOSIT = 2500;
-    private static final int MIN_VALID_TOKENS = 4;
+    private static final int NOSCHOOLSELECTED = -1;
+
+
 
     @FXML
     private ToggleGroup accountTypeOC;
@@ -92,6 +94,11 @@ public class BankTellerController {
     @FXML
     private RadioButton savings;
 
+
+    /**
+     * Creates an account database object container of initial_Size of 4 and numAcct 0
+     * upon GUI startup and prints that the bank teller is running on both displays.
+     */
     @FXML
     void initialize(){
         this.accountDatabase = new AccountDatabase();
@@ -99,6 +106,10 @@ public class BankTellerController {
         outText2.appendText("Bank Teller is running. \n");
     }
 
+    /**
+     * Makes the user unable to select a college on the GUI when the user is not running a
+     * a command on a college checking account
+     */
     void disableCC(boolean cc){
         collegeOCgroup.setDisable(cc);
         camden.setSelected(false);
@@ -106,17 +117,29 @@ public class BankTellerController {
         newark.setSelected(false);
     }
 
+    /**
+     * Makes the user unable to select loyalty on the GUI when the user is not running
+     * a command on a savings account
+     */
     void disableLoyalCustomer(boolean s){
         isLoyalOC.setDisable(s);
         isLoyalOC.setSelected(false);
     }
 
+    /**
+     * disables college checking options and loyalty selection options when selecting a
+     * command on a checking account
+     */
     @FXML
     void C(ActionEvent event) {
         disableCC(true);
         disableLoyalCustomer(true);
     }
 
+    /**
+     * enables college checking options and disables loyalty selection options when selecting a
+     * command on a college checking account
+     */
     @FXML
     void CC(ActionEvent event) {
         disableCC(false);
@@ -218,6 +241,10 @@ public class BankTellerController {
         return;
     }
 
+    /**
+     * disables college checking options and disables loyalty selection options when selecting a
+     * command on a money market account
+     */
     @FXML
     void MM(ActionEvent event) {
         disableCC(true);
@@ -340,6 +367,31 @@ public class BankTellerController {
     return true;
     }
 
+
+    /**
+     * Opens or reopens account in accountDatabase if no account of same type exists.
+     *
+     * @return the integer value for the current school of the college checking account to open.
+     */
+    private int chooseSchool() {
+        if(camden.isSelected()){
+            int school = CAMDEN;
+            return school;
+        }
+        else if(newark.isSelected()){
+            int school = NEWARK;
+            return school;
+        }
+        else if(newBrunswick.isSelected()){
+            int school = NEWBRUNSWICK;
+            return school;
+        }
+        else{
+            outText1.appendText("No Campus is selected for college checking account, select a campus \n");
+            return NOSCHOOLSELECTED;
+        }
+    }
+
     /**
      * Takes the parameters needed to open a new account
      * the parameters are loaded form the GUI and then checked in inputCheckerO() and
@@ -352,12 +404,8 @@ public class BankTellerController {
         if(!inputCheckerO()){ //checks that enough parameters were input
             return;
         }
-        String fname = fName.getText();
-        String lname = lName.getText();
-        String birthDate = String.valueOf(dob.getValue());
-        Profile profile = new Profile(fname, lname, birthDate);
-        String initialBalance = initialDeposit.getText();
-        double balance = Double.parseDouble(initialBalance);
+        Profile profile = new Profile(fName.getText(), lName.getText(), String.valueOf(dob.getValue()));
+        double balance = Double.parseDouble(initialDeposit.getText());
         Account account = null;
         if (!profileIsValid(profile)) {
             return;
@@ -376,23 +424,13 @@ public class BankTellerController {
         else if(moneyMarket.isSelected()){
             account = mmIsValid(balance) ? new MoneyMarket(profile, OPEN, balance) : null;
         }
-
         else if(collegeChecking.isSelected()){ //probably make this into a private method
-            if(camden.isSelected()){
-                int school = CAMDEN;
-                account = hasValidSchool(school) ? new CollegeChecking(profile, OPEN, balance, school) : null;
-            }
-            else if(newark.isSelected()){
-                int school = NEWARK;
-                account = hasValidSchool(school) ? new CollegeChecking(profile, OPEN, balance, school) : null;
-            }
-            else if(newBrunswick.isSelected()){
-                int school = NEWBRUNSWICK;
-                account = hasValidSchool(school) ? new CollegeChecking(profile, OPEN, balance, school) : null;
+            int school = chooseSchool();
+            if(school == NOSCHOOLSELECTED){
+                return;
             }
             else{
-                outText1.appendText("No Campus is selected for college checking account, select a campus \n");
-                return;
+                account = hasValidSchool(school) ? new CollegeChecking(profile, OPEN, balance, school) : null;
             }
         }
         else {

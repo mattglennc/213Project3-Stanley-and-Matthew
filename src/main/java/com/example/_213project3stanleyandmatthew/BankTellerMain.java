@@ -16,10 +16,19 @@ import java.io.IOException;
 
 public class BankTellerMain extends Application {
 
+
+    /**
+     * Launches the Javafx GUI
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
+
+    /**
+     * Creates an  FXMLLoader and loads the BankTellerView.fxml file
+     * afterwards the it sets the stage for the GUI
+     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader =
