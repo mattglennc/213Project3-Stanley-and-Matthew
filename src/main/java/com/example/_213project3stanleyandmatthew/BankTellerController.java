@@ -274,7 +274,7 @@ public class BankTellerController {
      */
     private boolean hasValidSchool(int school) {
         if (school > MAX_VALID_SCHOOL) {
-            System.out.println("Invalid campus code.\n");
+            outText1.appendText("Invalid campus code.\n");
             return false;
         }
 
